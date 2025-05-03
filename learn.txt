@@ -1,0 +1,27 @@
+ dynamo db is  nosql aws db and we are using schema.graphql we made to add the items
+ in that db and we have AWS datestring we need to generate to place it in createdAt, updatedAt
+
+ IN the frontend for the verses generated we need something called dynoamodb appsync so that it fetches data from it
+
+ so we need to have interface as this is TS and we need to add interface then it will have values so TS wont giveerrors 
+
+ in dynoamodb json we have for eg in normal json we have  "name" : "sunee" but in dynoamodbjson we have "name" :{ "S" : "suneel" } which means the name becomes its own object
+
+interface is code we explain what are the different data types what the id would be ,we need to define those so typescript will understand
+
+thank god ,for many months i have faced this issue which is gap at json of createdAt
+ in the dynoamodb, so now solved it and moving forward will complete it soon as
+  almost all the ui is done only connecting to amplify is left
+
+ # to get our bloburl from lambda we have function in amplify functions src index.js and then it does
+  pass in data or json into event or batch processing inside lambda ,generate code 
+  serverless scripts our wish , returning us a response to user (us) body ,base64 encoded string
+  
+ #  so its nice to work the script in serverless and we have code already but we cant directly add our nodejs code into this , we need to add it 
+ then also update the quotesgenerated +1
+ to speak to dynamo we need to "amplify update function " in terminal to give it access or resource sharing to read and update the db 
+
+ so after updating the tables names are already created for us so no need to hard code the data 
+ we didnt install aws-sdk but aws knows so its fine its baked in  but aws-sdk-clients or soenthing like taht wont work
+ 
+

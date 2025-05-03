@@ -1,0 +1,25 @@
+{
+  "lambdaLayers": [],
+  "permissions": {
+    "storage": {
+      "VersesAppData:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  },
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "mongodbUrl",
+      "environmentVariableName": "MONGODB_URL"
+    },
+    {
+      "cloudFormationParameterName": "fontconfigPath",
+      "environmentVariableName": "FONTCONFIG_PATH"
+    },
+    {
+      "cloudFormationParameterName": "fcDebug",
+      "environmentVariableName": "FC_DEBUG"
+    }
+  ]
+}

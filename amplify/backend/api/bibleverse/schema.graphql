@@ -1,0 +1,43 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+#input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+# above is setting authrule public so that
+
+
+# query - speak to Lambda
+#lambda function 
+
+type Query {
+generateAQuote(input : AWSJSON!) : String
+@auth(rules : [
+ {allow : public, provider : iam},
+])
+@function( name : "bibleverse2b6baca8-${env}")
+}
+
+#Public Data
+# resources need to connect lambda function to Dynamodb to update so we use
+type VersesAppData 
+ @model
+@auth(rules : [
+  {allow : public, provider : iam, operations : [read]}
+])
+## ! mean mandatory field ,gsi global secondary index ,its like next important than primary key second index 
+{
+   id: ID !
+   queryName : String!
+    @index(
+      name : "VersesQueryName",
+      queryField : "verseQueryName"
+    )
+    versesGenerated : Int!
+    createdAt : String!
+    updatedAt : String!
+}
+
+
+# ! mean required field
+# global secondary index gsi mean, dynamodb secondary index to fetch data
+
+
+

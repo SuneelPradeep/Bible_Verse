@@ -1,0 +1,102 @@
+{
+  "api": {
+    "bibleverse": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "AWS_IAM"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "bibleverse47d199b8": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "bibleverse2b6baca8": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ],
+          "category": "api",
+          "resourceName": "bibleverse"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_bibleverse2b6baca8_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bibleverse2b6baca8"
+        }
+      ]
+    },
+    "AMPLIFY_function_bibleverse2b6baca8_fcDebug": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bibleverse2b6baca8"
+        }
+      ]
+    },
+    "AMPLIFY_function_bibleverse2b6baca8_fontconfigPath": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bibleverse2b6baca8"
+        }
+      ]
+    },
+    "AMPLIFY_function_bibleverse2b6baca8_mongodbUrl": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bibleverse2b6baca8"
+        }
+      ]
+    },
+    "AMPLIFY_function_bibleverse2b6baca8_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "bibleverse2b6baca8"
+        }
+      ]
+    }
+  },
+  "storage": {}
+}

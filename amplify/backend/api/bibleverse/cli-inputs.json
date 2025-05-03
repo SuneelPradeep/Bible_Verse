@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "bibleverse",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AWS_IAM"
+    },
+    "additionalAuthTypes": [],
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "LAMBDA",
+        "resolver": {
+          "type": "EXISTING",
+          "name": "bibleverseLambda"
+        }
+      }
+    }
+  }
+}

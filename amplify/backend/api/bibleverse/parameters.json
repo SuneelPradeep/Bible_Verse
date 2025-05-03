@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "bibleverse",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-09-16T08:48:42.626Z"
+}

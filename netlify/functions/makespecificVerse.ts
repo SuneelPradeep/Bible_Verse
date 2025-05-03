@@ -1,14 +1,12 @@
 
 
+import { EnglishBibleVerse, TeluguBibleVerse } from '@/db/bibleverseSchema';
 import dbConnection from "@/db/dbConnect";
-import {  NextResponse ,NextRequest} from "next/server";
+import { english_books, telugu_books } from "@/src/utils/Booksnames";
+import fs from 'fs';
+import { NextRequest, NextResponse } from "next/server";
+import path from 'path';
 import sharp from "sharp";
-import path from 'path'
-import {EnglishBibleVerse, TeluguBibleVerse} from '@/db/bibleverseSchema'
-// import telugu_books from '@/public/telugu_books.json'
-// import english_books from '@/public/english_books.json'
-import { telugu_books,english_books } from "@/src/utils/Booksnames";
-import fs from 'fs'
 
 export async function POST(req : NextRequest){
     const {book, chapter,verse} = await req.json()
@@ -18,7 +16,6 @@ export async function POST(req : NextRequest){
     }
     try {
         const conn = await dbConnection()     
-        // const data = await EnglishBibleVerse.findOne({book :book ,chapter : chapter,verse : verse});
          const specificVerse = await TeluguBibleVerse.findOne({book  , chapter, verse})
          const sameEnglishVerse = await EnglishBibleVerse.findOne({book ,chapter,verse})
      let findbookname = telugu_books.filter((i)=>( i.id===parseInt(book)));
@@ -66,9 +63,7 @@ export async function POST(req : NextRequest){
                     
             }}
   
-        // tspan is used to give lines of text in svg pic
-   // usually in svg making we have <svg> insdie we have <text> <circle> <g> which is google tag and <rect for rectange and width height to get that and fontsize we can give 
-             const svgImage = `
+           const svgImage = `
               <svg width="${width}" height="${height}" >
                 <style>
                 .text-container {
@@ -119,9 +114,7 @@ export async function POST(req : NextRequest){
            let timeStamp = JSON.stringify(new Date()).replace(/[^\d]/g,"")
               const svgBuffer = Buffer.from(svgImage)
             const outputPath = path.join(assetsDir, `verse_card_${timeStamp}${randomIndex}.jpg`)
-              // await sharp(selectedBg).composite([ {input : svgBuffer, top:0,left : 0}]).toFile(outputPath)
-              const imageBuffer = await sharp(selectedBg).composite([{ input: svgBuffer, top: 0, left: 0 }]).jpeg({ quality: 100 }).toBuffer(); // 👈 preserve HD quality.toBuffer();
-              // const fileUrl = `/assets/verse_card_${timeStamp}${randomIndex}.jpg`;
+              const imageBuffer = await sharp(selectedBg).composite([{ input: svgBuffer, top: 0, left: 0 }]).jpeg({ quality: 100 }).toBuffer(); 
               return new NextResponse(imageBuffer, {
                 headers: {
                   'Content-Type': 'image/jpeg',

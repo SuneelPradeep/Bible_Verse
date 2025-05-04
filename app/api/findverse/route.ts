@@ -1,10 +1,10 @@
-import { EnglishBibleVerse, TeluguBibleVerse } from '@/db/bibleverseSchema';
-import dbConnection from "@/db/dbConnect";
-import { english_books, telugu_books } from "@/src/utils/Booksnames";
 import fs from 'fs';
 import { NextResponse } from "next/server";
 import path from 'path';
 import sharp from "sharp";
+import { EnglishBibleVerse, TeluguBibleVerse } from '../../../db/bibleverseSchema';
+import dbConnection from "../../../db/dbConnect";
+import { english_books, telugu_books } from '../../../src/utils/Booksnames';
 
 export async function GET(){
   const assetsDir = path.join(process.cwd(), 'public', 'assets');

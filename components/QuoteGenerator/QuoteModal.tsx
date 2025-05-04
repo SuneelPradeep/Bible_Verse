@@ -1,8 +1,8 @@
-import '@/app/globals.css';
 import axios from 'axios';
 import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
+import '../../app/globals.css';
 import VerseSelect from './VerseSelect';
 
 const QuoteModal = () => {

@@ -1,12 +1,10 @@
+import { GraphQLResult } from "aws-amplify/api"
 import Image from "next/image"
 import Link from "next/link"
-import styled from "styled-components"
-// import cloud from "@/assets/cloud-and-thunder.png"
-// import cloud2 from '@/assets/cloudy-weather.png'
-import bible from '@/assets/bible.png'
-import cross from '@/assets/cross.png'
-import { GraphQLResult } from "aws-amplify/api"
 import { useState } from "react"
+import styled from "styled-components"
+import bible from '../../assets/bible.png'
+import cross from '../../assets/cross.png'
 import QuoteModal from "./QuoteModal"
 
 // Amplify.configure(config)

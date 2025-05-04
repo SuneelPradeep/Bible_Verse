@@ -1,9 +1,9 @@
-import { EnglishBibleVerse, TeluguBibleVerse } from '@/db/bibleverseSchema';
-import dbConnection from "@/db/dbConnect";
-import { english_books, telugu_books } from '@/src/utils/Booksnames';
 import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
+import { EnglishBibleVerse, TeluguBibleVerse } from '../../db/bibleverseSchema';
+import dbConnection from "../../db/dbConnect";
+import { english_books, telugu_books } from '../../src/utils/Booksnames';
 
 export const handler = async (event: any) => {
    const assetsDir = path.join(__dirname, 'assets');

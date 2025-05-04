@@ -1,14 +1,12 @@
 
 
-import { EnglishBibleVerse, TeluguBibleVerse } from '@/db/bibleverseSchema';
-import dbConnection from "@/db/dbConnect";
+import fs from 'fs';
 import { NextRequest, NextResponse } from "next/server";
 import path from 'path';
 import sharp from "sharp";
-// import telugu_books from '@/public/telugu_books.json'
-// import english_books from '@/public/english_books.json'
-import { english_books, telugu_books } from "@/src/utils/Booksnames";
-import fs from 'fs';
+import { EnglishBibleVerse, TeluguBibleVerse } from '../../../db/bibleverseSchema';
+import dbConnection from "../../../db/dbConnect";
+import { english_books, telugu_books } from '../../../src/utils/Booksnames';
 
 export async function POST(req : NextRequest){
     const {book, chapter,verse} = await req.json()
@@ -137,7 +135,7 @@ export async function POST(req : NextRequest){
     }
 
 
-    
+
 
 
 

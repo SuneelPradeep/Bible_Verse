@@ -1,9 +1,9 @@
 
 'use client';
-import rawbibledata from '@/src/utils/teluguBibleBooksData.json';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import rawbibledata from '../../src/utils/teluguBibleBooksData.json';
 
 interface BibleChapter {
     chapter: string;

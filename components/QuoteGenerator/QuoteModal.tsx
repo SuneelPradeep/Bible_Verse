@@ -46,7 +46,7 @@ const QuoteModal = () => {
                  {/* provided by <FooterLink href="https://www.instagram.com/Suneel_Pradeep" target="_blank" rel="noopener noreferrer" > Bible API </FooterLink> */}
             </QuoteSubTitle>
             <QuoteButton onClick={handleVerse}> 
-                <QuoteButtonText> {loading ? 'Loading...' : 'Daily Mannah Verse'}
+                <QuoteButtonText> {loading ? 'Downloading...' : 'Daily Mannah Verse'}
                 </QuoteButtonText> </QuoteButton>
                 <VerseSelect />
         </QuoteSubContent>

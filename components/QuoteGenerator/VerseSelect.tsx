@@ -102,7 +102,7 @@ const VerseSelect = () => {
       
           const link = document.createElement('a');
           link.href = url;
-          link.setAttribute('download', `${bookName} ${Number(selectedChapter)+1}:${Number(selectedVerse)+1}.jpg`); 
+          link.setAttribute('download', `${bookName} ${Number(selectedChapter)+1} : ${Number(selectedVerse)+1}.jpg`); 
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -167,7 +167,7 @@ const VerseSelect = () => {
          
         </SelectContainer>
            <QuoteButton disabled={!selectedBook || !selectedChapter || !selectedVerse || loading} onClick={handleMakeVerse}> 
-           <QuoteButtonText> {loading ? 'Loading...'  : 'Make Verse'}
+           <QuoteButtonText> {loading ? 'Downloading...'  : 'Make Verse'}
            </QuoteButtonText> </QuoteButton>
            </MainSection>
     );

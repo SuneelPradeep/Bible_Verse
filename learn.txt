@@ -25,3 +25,37 @@ thank god ,for many months i have faced this issue which is gap at json of creat
  we didnt install aws-sdk but aws knows so its fine its baked in  but aws-sdk-clients or soenthing like taht wont work
  
 
+ // the below file is amplify/team-provider.json
+
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bibleverse-dev-151106-authRole",
+      "UnauthRoleArn": "arn:aws:iam::727229598423:role/amplify-bibleverse-dev-151106-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::727229598423:role/amplify-bibleverse-dev-151106-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-bibleverse-dev-151106-deployment",
+      "UnauthRoleName": "amplify-bibleverse-dev-151106-unauthRole",
+      "StackName": "amplify-bibleverse-dev-151106",
+      "StackId": "arn:aws:cloudformation:us-east-1:727229598423:stack/amplify-bibleverse-dev-151106/d33178c0-e11d-11ee-a77d-123886ae08d1",
+      "AmplifyAppId": "d3j14vwpclmzqy"
+    },
+    "categories": {
+      "auth": {
+        "bibleverse47d199b8": {}
+      },
+      "function": {
+        "bibleverse2b6baca8": {
+          "deploymentBucketName": "amplify-bibleverse-dev-151106-deployment",
+          "s3Key": "amplify-builds/bibleverse2b6baca8-596a58676d5435307852-build.zip",
+          "mongodbUrl":"", 
+          "fontconfigPath": "/tmp/nonexistent",
+          "fcDebug": "0"
+        }
+      },
+      "api": {
+        "bibleverse": {}
+      }
+    }
+  }
+}

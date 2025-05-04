@@ -1,22 +1,3 @@
-// import mongoose, { Connection } from 'mongoose'
-// import dotenv from 'dotenv'
-// dotenv.config()
-// const MONGODB_URI  = process.env.MONGODB_URL
-
-// if(!MONGODB_URI){
-//     throw new Error("MongoDB connection URL not found")
-// }
-// const dbConnection = async () =>{
-
-//    try {
-//      const conn = await mongoose.connect(MONGODB_URI)
-//      return conn;
-//    } catch (error) {
-//         console.error('Error ',error)
-//    }
-// }
-
-// export default dbConnection;
 
 import mongoose from 'mongoose'
 const mongoDBurl = process.env.MONGODB_URL

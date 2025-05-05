@@ -6,11 +6,17 @@ import dbConnection from "../../db/dbConnect";
 import { english_books, telugu_books } from '../../src/utils/Booksnames';
 
 
-const fontPath = path.join(__dirname, 'fonts/NTR-Regular.ttf');
+// const fontPath = path.join(__dirname, 'fonts/NTR-Regular.ttf');
+// const fontData = fs.readFileSync(fontPath);
+// const base64Font = fontData.toString('base64');
+const fontsDir = path.join(__dirname, 'fonts');
+const fontPath = path.join(fontsDir, 'NotoSansTelugu.ttf');
 const fontData = fs.readFileSync(fontPath);
-const base64Font = fontData.toString('base64');
+const base64font = fontData.toString('base64');
 export const handler = async (event: any) => {
    const assetsDir = path.join(__dirname, 'assets');
+
+
 
   if (!fs.existsSync(assetsDir)) {
     fs.mkdirSync(assetsDir, { recursive: true });
@@ -71,6 +77,7 @@ export const handler = async (event: any) => {
     if (newText2) {
       tspanElements2 += `<tspan x="${width / 2}" dy="1em">${newText2}</tspan>`;
     }
+   
 
     // const svgImage = `
     //   <svg width="${width}" height="${height}">
@@ -108,9 +115,11 @@ export const handler = async (event: any) => {
   <svg width="${width}" height="${height}">
     <defs>
       <style type="text/css">
-        @font-face {
+       @font-face {
           font-family: 'NotoSansTelugu';
-          src: url('data:font/truetype;charset=utf-8;base64,${base64Font}') format('truetype');
+          src: url('data:font/truetype;charset=utf-8;base64,${base64font}') format('truetype');
+          font-weight: normal;
+          font-style: normal;
         }
 
         .teluguText {

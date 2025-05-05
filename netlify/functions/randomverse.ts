@@ -5,6 +5,10 @@ import { EnglishBibleVerse, TeluguBibleVerse } from '../../db/bibleverseSchema';
 import dbConnection from "../../db/dbConnect";
 import { english_books, telugu_books } from '../../src/utils/Booksnames';
 
+
+const fontPath = path.join(__dirname, 'fonts/NTR-Regular.ttf');
+const fontData = fs.readFileSync(fontPath);
+const base64Font = fontData.toString('base64');
 export const handler = async (event: any) => {
    const assetsDir = path.join(__dirname, 'assets');
 
@@ -68,38 +72,96 @@ export const handler = async (event: any) => {
       tspanElements2 += `<tspan x="${width / 2}" dy="1em">${newText2}</tspan>`;
     }
 
-    const svgImage = `
-      <svg width="${width}" height="${height}">
-        <style>
-          .quoteAuthorStyles {
-            font-size: 40px;
-            font-weight: bold;
-            padding: 50px;
-          }
-          .footerStyles {
-            font-size: 15px;
-            font-weight: bold;
-            fill: lightgrey;
-            text-anchor: middle;
-            font-family: Verdana;
-          }
-        </style>
-        <g>
-          <rect x="0" y="0" width="${width}" height="auto" fill="none"></rect>
-          <text x="400" y="50" font-family="'NTR', 'Noto Sans Telugu', sans-serif" text-anchor="middle" font-size="45" fill="white">
-            ${tspanElements}
-            <tspan class="quoteAuthorStyles" x="750" dy="1.5em" font-size="30">- ${quoteAuthor}</tspan>
-          </text>
-          <text x="400" y="450" font-family="'Permanent Marker', cursive" text-anchor="middle" font-size="50" fill="white">
-            ${tspanElements2}
-            <tspan class="quoteAuthorStyles" x="750" dy="2.5em" font-size="30">- ${quoteAuthor2}</tspan>
-          </text>
-        </g>
-        <text x="${width / 2}" y="${height - 10}" class="footerStyles">Developed by @ernest_solomon_world</text>
-      </svg>
-    `;
+    // const svgImage = `
+    //   <svg width="${width}" height="${height}">
+    //     <style>
+    //       .quoteAuthorStyles {
+    //         font-size: 40px;
+    //         font-weight: bold;
+    //         padding: 50px;
+    //       }
+    //       .footerStyles {
+    //         font-size: 15px;
+    //         font-weight: bold;
+    //         fill: lightgrey;
+    //         text-anchor: middle;
+    //         font-family: Verdana;
+    //       }
+    //     </style>
+    //     <g>
+    //       <rect x="0" y="0" width="${width}" height="auto" fill="none"></rect>
+    //       <text x="400" y="50" font-family="'NTR', 'Noto Sans Telugu', sans-serif" text-anchor="middle" font-size="45" fill="white">
+    //         ${tspanElements}
+    //         <tspan class="quoteAuthorStyles" x="750" dy="1.5em" font-size="30">- ${quoteAuthor}</tspan>
+    //       </text>
+    //       <text x="400" y="450" font-family="'Permanent Marker', cursive" text-anchor="middle" font-size="50" fill="white">
+    //         ${tspanElements2}
+    //         <tspan class="quoteAuthorStyles" x="750" dy="2.5em" font-size="30">- ${quoteAuthor2}</tspan>
+    //       </text>
+    //     </g>
+    //     <text x="${width / 2}" y="${height - 10}" class="footerStyles">Developed by @ernest_solomon_world</text>
+    //   </svg>
+    // `;
 
     // Background image handling similar to makespecificverse.ts
+    const svgImage = `
+  <svg width="${width}" height="${height}">
+    <defs>
+      <style type="text/css">
+        @font-face {
+          font-family: 'NotoSansTelugu';
+          src: url('data:font/truetype;charset=utf-8;base64,${base64Font}') format('truetype');
+        }
+
+        .teluguText {
+          font-family: 'NotoSansTelugu';
+          font-size: 45px;
+          fill: white;
+          text-anchor: middle;
+        }
+
+        .englishText {
+          font-family: 'Permanent Marker', cursive;
+          font-size: 50px;
+          fill: white;
+          text-anchor: middle;
+        }
+
+        .quoteAuthorStyles {
+          font-size: 30px;
+          font-weight: bold;
+        }
+
+        .footerStyles {
+          font-size: 15px;
+          font-weight: bold;
+          fill: lightgrey;
+          text-anchor: middle;
+          font-family: Verdana;
+        }
+      </style>
+    </defs>
+
+    <g>
+      <rect x="0" y="0" width="${width}" height="${height}" fill="none"></rect>
+
+      <text x="${width / 2}" y="50" class="teluguText">
+        ${tspanElements}
+        <tspan class="quoteAuthorStyles" x="${width / 2}" dy="1.5em">- ${quoteAuthor}</tspan>
+      </text>
+
+      <text x="${width / 2}" y="450" class="englishText">
+        ${tspanElements2}
+        <tspan class="quoteAuthorStyles" x="${width / 2}" dy="2.5em">- ${quoteAuthor2}</tspan>
+      </text>
+    </g>
+
+    <text x="${width / 2}" y="${height - 10}" class="footerStyles">
+      Developed by @ernest_solomon_world
+    </text>
+  </svg>
+`;
+
     const bgImages = [
       "Ibiza Sunset.jpg", "EasyMed.jpg", "Jodhpur.jpg", "Vice City.jpg",
       "Witching Hour.jpg", "Visions of Grandeur.jpg", "Yoda.jpg",

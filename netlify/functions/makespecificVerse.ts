@@ -7,12 +7,12 @@ import dbConnection from '../../db/dbConnect';
 import { english_books, telugu_books } from '../../src/utils/Booksnames';
 
 export const handler = async (event: any) => {
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: 'Method Not Allowed',
-    };
-  }
+  // if (event.httpMethod !== 'POST') {
+  //   return {
+  //     statusCode: 405,
+  //     body: 'Method Not Allowed',
+  //   };
+  // }
 
   try {
     const { book, chapter, verse } = JSON.parse(event.body);

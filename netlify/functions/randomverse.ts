@@ -111,64 +111,120 @@ export const handler = async (event: any) => {
     // `;
 
     // Background image handling similar to makespecificverse.ts
-    const svgImage = `
-  <svg width="${width}" height="${height}">
-    <defs>
-      <style type="text/css">
-       @font-face {
-          font-family: 'NotoSansTelugu';
-          src: url('data:font/truetype;charset=utf-8;base64,${base64font}') format('truetype');
-          font-weight: normal;
-          font-style: normal;
-        }
+    const fontBase64 = fs.readFileSync(path.join(assetsDir, 'NotoSansTelugu.ttf.base64.txt'), 'utf-8');
 
-        .teluguText {
-          font-family: 'NotoSansTelugu';
-          font-size: 45px;
-          fill: white;
-          text-anchor: middle;
-        }
+//     const svgImage = `
+//   <svg width="${width}" height="${height}"  xmlns="http://www.w3.org/2000/svg">
+//     <defs>
+//       <style type="text/css">
+//        @font-face {
+//           font-family: 'NotoSansTelugu';
+//           src: url('data:font/truetype;charset=utf-8;base64,${base64font}') format('truetype');
+//           font-weight: normal;
+//           font-style: normal;
+//         }
 
-        .englishText {
-          font-family: 'Permanent Marker', cursive;
-          font-size: 50px;
-          fill: white;
-          text-anchor: middle;
-        }
+//         .teluguText {
+//           font-family: 'NotoSansTelugu';
+//           font-size: 45px;
+//           fill: white;
+//           text-anchor: middle;
+//         }
 
-        .quoteAuthorStyles {
-          font-size: 30px;
-          font-weight: bold;
-        }
+//         .englishText {
+//           font-family: 'Permanent Marker', cursive;
+//           font-size: 50px;
+//           fill: white;
+//           text-anchor: middle;
+//         }
 
-        .footerStyles {
-          font-size: 15px;
-          font-weight: bold;
-          fill: lightgrey;
-          text-anchor: middle;
-          font-family: Verdana;
-        }
-      </style>
-    </defs>
+//         .quoteAuthorStyles {
+//           font-size: 30px;
+//           font-weight: bold;
+//         }
 
-    <g>
-      <rect x="0" y="0" width="${width}" height="${height}" fill="none"></rect>
+//         .footerStyles {
+//           font-size: 15px;
+//           font-weight: bold;
+//           fill: lightgrey;
+//           text-anchor: middle;
+//           font-family: Verdana;
+//         }
+//       </style>
+//     </defs>
 
-      <text x="${width / 2}" y="50" class="teluguText">
-        ${tspanElements}
-        <tspan class="quoteAuthorStyles" x="${width / 2}" dy="1.5em">- ${quoteAuthor}</tspan>
-      </text>
+//     <g>
+//       <rect x="0" y="0" width="${width}" height="${height}" fill="none"></rect>
 
-      <text x="${width / 2}" y="450" class="englishText">
-        ${tspanElements2}
-        <tspan class="quoteAuthorStyles" x="${width / 2}" dy="2.5em">- ${quoteAuthor2}</tspan>
-      </text>
-    </g>
+//       <text x="${width / 2}" y="50" class="teluguText">
+//         ${tspanElements}
+//         <tspan class="quoteAuthorStyles" x="${width / 2}" dy="1.5em">- ${quoteAuthor}</tspan>
+//       </text>
 
-    <text x="${width / 2}" y="${height - 10}" class="footerStyles">
-      Developed by @ernest_solomon_world
-    </text>
-  </svg>
+//       <text x="${width / 2}" y="450" class="englishText">
+//         ${tspanElements2}
+//         <tspan class="quoteAuthorStyles" x="${width / 2}" dy="2.5em">- ${quoteAuthor2}</tspan>
+//       </text>
+//     </g>
+
+//     <text x="${width / 2}" y="${height - 10}" class="footerStyles">
+//       Developed by @ernest_solomon_world
+//     </text>
+//   </svg>
+// `;
+// Load font base64 string once (put the .base64 string inline or load from file)
+
+const svgImage = `
+<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style type="text/css">
+      @font-face {
+        font-family: 'NotoTelugu';
+        src: url('data:font/truetype;charset=utf-8;base64,${fontBase64}') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      .telugu {
+        font-family: 'NotoTelugu', sans-serif;
+        font-size: 45px;
+        fill: white;
+        text-anchor: middle;
+      }
+
+      .english {
+        font-family: 'Arial', sans-serif;
+        font-size: 50px;
+        fill: white;
+        text-anchor: middle;
+      }
+
+      .quote-author {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      .footer {
+        font-size: 15px;
+        font-weight: bold;
+        fill: lightgrey;
+        text-anchor: middle;
+        font-family: Verdana;
+      }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="${width}" height="${height}" fill="none" />
+  <text x="${width / 2}" y="50" class="telugu">
+    ${tspanElements}
+    <tspan class="quote-author" x="${width / 2}" dy="1.5em">- ${quoteAuthor}</tspan>
+  </text>
+  <text x="${width / 2}" y="450" class="english">
+    ${tspanElements2}
+    <tspan class="quote-author" x="${width / 2}" dy="2.5em">- ${quoteAuthor2}</tspan>
+  </text>
+  <text x="${width / 2}" y="${height - 10}" class="footer">Developed by @ernest_solomon_world</text>
+</svg>
 `;
 
     const bgImages = [

@@ -227,7 +227,10 @@ export const handler = async (event: any) => {
 // </svg>
 // `;
 
-const fontPath = path.join(__dirname, 'assets', 'NotoSansTelugu.ttf');
+// const fontPath = path.join(__dirname, 'assets', 'NotoSansTelugu.ttf');
+// const fontData = fs.readFileSync(fontPath).toString('base64');
+// const fontBase64Url = `data:font/ttf;base64,${fontData}`;
+const fontPath = path.join(__dirname, 'assets', 'NotoSansTelugu-Regular.ttf');
 const fontData = fs.readFileSync(fontPath).toString('base64');
 const fontBase64Url = `data:font/ttf;base64,${fontData}`;
 const svgImage = `
@@ -235,7 +238,8 @@ const svgImage = `
   <style>
     @font-face {
       font-family: 'NotoSansTelugu';
-      src: url('${fontBase64Url}') format('truetype');
+      src : url('data:font/truetype;charset=utf-8;base64,${fontData}') format('truetype');
+   
     }
     .teluguText {
       font-family: 'NotoSansTelugu', sans-serif;
